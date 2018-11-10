@@ -35,6 +35,7 @@ class Binary_tree:
     if self.root == None:
       print("Tree is Empty")
     else:
+      print("Printing Tree Elements :- ")
       self.pre_order_traversal(self.root)
   
   def pre_order_traversal(self,present_node):
@@ -106,41 +107,19 @@ class Binary_tree:
           left_side.parent.left_child = None
         if left_side.right_child != None:
           left_side.parent.left_child =  left_side.right_child
-          
-        
-        
-      
-      
-      
-      
-      
-        
-    
-    
-      
-      
-      
-    
-      
-    
-    
-    
 
-  
-  
-  
-my_tree = Binary_tree()
-my_tree.inserting_node(5)
-my_tree.inserting_node(0)
-my_tree.inserting_node(2)
-my_tree.inserting_node(1)
-my_tree.inserting_node(23)
-my_tree.inserting_node(12)
-my_tree.inserting_node(7)
-my_tree.inserting_node(9)
-my_tree.inserting_node(45)
-my_tree.inserting_node(33)
-my_tree.print_tree()
-#my_tree.search_return(21)
-my_tree.delete_node(23)
-my_tree.print_tree()
+tree = Binary_tree()
+import re 
+with open('binary.txt','r') as file:
+  file_contents = file.readline()
+  valueList = re.sub("[^\w]", " ",  file_contents).split()
+  for i in valueList:
+    tree.inserting_node(int(i))
+tree.print_tree()
+"""tree.search_return(33)
+tree.delete_node(33)
+tree.print_tree
+tree.search_return(33)"""
+
+          
+          
