@@ -59,6 +59,22 @@ class Binary_tree:
       print(cur_node.right_child.value)
       return self.searching_element(value , cur_node.right_child)
     return (print("Value Not Found : {} ".format(value)),cur_node)
+  
+  def delete_node(self,value):
+    if self.root == None:
+      return print("Tree empty Insert first")
+      
+    if self.root.value == value:
+      left_side = self.root.right_child
+      while left_side.left_child != None:
+        left_side = left_side.left_child
+      self.root.value = left_side.value
+      print(self.root.value)
+      
+      
+      
+      
+      
         
     
     
@@ -86,4 +102,5 @@ my_tree.inserting_node(9)
 my_tree.inserting_node(45)
 my_tree.inserting_node(33)
 #my_tree.print_tree()
-my_tree.search_return(21)
+#my_tree.search_return(21)
+my_tree.delete_node(5)
