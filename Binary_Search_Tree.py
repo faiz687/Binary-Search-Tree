@@ -3,6 +3,7 @@ class node:
     self.value = value
     self.right_child = None
     self.left_child = None
+    self.parent = None
 
 class Binary_tree:
   def __init__(self):
@@ -18,11 +19,13 @@ class Binary_tree:
     if value < present_node.value:
       if present_node.left_child == None:
         present_node.left_child = node(value)
+        present_node.left_child.parent = present_node
       else:
         self.insert_node(present_node.left_child,value)
     elif value > present_node.value: 
       if present_node.right_child == None:
         present_node.right_child = node(value)
+        present_node.right_child.parent = present_node
       else:
         self.insert_node(present_node.right_child,value)
     else:
@@ -63,13 +66,49 @@ class Binary_tree:
   def delete_node(self,value):
     if self.root == None:
       return print("Tree empty Insert first")
+    else:
+      deleting_node = self.search_return(value)
+      deleting_node = deleting_node[1]
       
-    if self.root.value == value:
-      left_side = self.root.right_child
-      while left_side.left_child != None:
-        left_side = left_side.left_child
-      self.root.value = left_side.value
-      print(self.root.value)
+    def childrens(node):
+      number_of_childrens = 0
+      if node.left_child != None:
+        number_of_childrens += 1
+      if node.right_child != None:
+        number_of_childrens += 1
+      return number_of_childrens
+    
+    number_of_childrens = childrens(deleting_node)
+
+    if number_of_childrens == 0:
+      if deleting_node.parent.left_child == None:
+        deleting_node.parent.right_child  = None
+      else:
+        deleting_node.parent.left_child =  None
+        
+    if number_of_childrens == 1:
+      if deleting_node.left_child != None:
+        dele_child = deleting_node.left_child
+      else:
+        dele_child = deleting_node.right_child
+      
+      if deleting_node.parent.left_child == deleting_node:
+        deleting_node.parent.left_child = dele_child
+      else:
+        deleting_node.parent.right_child = dele_child
+      
+    if number_of_childrens == 2:
+        left_side = deleting_node.right_child
+        while left_side.left_child != None:
+          left_side = left_side.left_child
+        deleting_node.value = left_side.value
+        if left_side.right_child == None:
+          left_side.parent.left_child = None
+        if left_side.right_child != None:
+          left_side.parent.left_child =  left_side.right_child
+          
+        
+        
       
       
       
@@ -101,6 +140,7 @@ my_tree.inserting_node(7)
 my_tree.inserting_node(9)
 my_tree.inserting_node(45)
 my_tree.inserting_node(33)
-#my_tree.print_tree()
+my_tree.print_tree()
 #my_tree.search_return(21)
-my_tree.delete_node(5)
+my_tree.delete_node(23)
+my_tree.print_tree()
