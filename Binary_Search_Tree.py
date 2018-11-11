@@ -13,30 +13,34 @@ class Binary_tree:
     if self.root == None: 
       self.root = node(value)
     elif self.root != None:
-      self.insert_node(self.root,value)
-      
+      a = self.insert_node(self.root,value)
+      print(a)
+    
+   
   def insert_node(self,present_node,value):
     if value < present_node.value:
       if present_node.left_child == None:
         present_node.left_child = node(value)
         present_node.left_child.parent = present_node
       else:
-        self.insert_node(present_node.left_child,value)
-    elif value > present_node.value: 
+        return self.insert_node(present_node.left_child,value)
+    elif value > present_node.value:
       if present_node.right_child == None:
         present_node.right_child = node(value)
         present_node.right_child.parent = present_node
       else:
-        self.insert_node(present_node.right_child,value)
+        return self.insert_node(present_node.right_child,value)
     else:
-      print("Value In Tree")
+       return 'Value in tree'
+  
   
   def print_tree(self):
     if self.root == None:
-      print("Tree is Empty")
+      return "Tree is Empty"
     else:
       print("Printing Tree Elements :- ")
       self.pre_order_traversal(self.root)
+  
   
   def pre_order_traversal(self,present_node):
     if present_node == None: 
@@ -113,11 +117,11 @@ def filling_tree(tree):
     file_contents = file.readline()
     valueList = re.sub("[^\w]", " ",  file_contents).split()
     for i in valueList:
-      tree.inserting_node(int(i))
+      tree.inserting_node(int(i))  
   return tree    
-
-#tree = Binary_tree()
-#tree = filling_tree(tree)
+tree = Binary_tree()
+tree = filling_tree(tree)
+tree.inserting_node(2)
 #tree.print_tree()
 #tree.delete_node(5)
 #tree.print_tree()
