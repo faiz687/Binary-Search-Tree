@@ -13,10 +13,8 @@ class Binary_tree:
     if self.root == None: 
       self.root = node(value)
     elif self.root != None:
-      a = self.insert_node(self.root,value)
-      print(a)
+      return self.insert_node(self.root,value)
     
-   
   def insert_node(self,present_node,value):
     if value < present_node.value:
       if present_node.left_child == None:
@@ -36,7 +34,7 @@ class Binary_tree:
   
   def print_tree(self):
     if self.root == None:
-      return "Tree is Empty"
+      return 'Tree is Empty'
     else:
       print("Printing Tree Elements :- ")
       self.pre_order_traversal(self.root)
@@ -49,24 +47,24 @@ class Binary_tree:
     self.pre_order_traversal(present_node.left_child)
     self.pre_order_traversal(present_node.right_child)
     
-  def search_return(self, value):
+  def search_return(self,value):
     if self.root != None:
-      print("traversing path :-")
+      print("traversed path :-")
       print(self.root.value)
       return self.searching_element(value,self.root)
     else:
-      return print("No Elements In Tree")
+      return 'No Elements In Tree'
   
   def searching_element(self,value,cur_node):
     if value == cur_node.value:
-      return (print("Value Found : {} ".format(value)),cur_node)
+      return ('Yes',cur_node)
     elif value < cur_node.value and cur_node.left_child != None:
       print(cur_node.left_child.value)
       return self.searching_element(value , cur_node.left_child)
     elif value > cur_node.value and cur_node.right_child != None:
       print(cur_node.right_child.value)
       return self.searching_element(value , cur_node.right_child)
-    return (print("Value Not Found : {} ".format(value)),cur_node)
+    return ('No',cur_node)
   
   def delete_node(self,value):
     if self.root == None:
@@ -74,7 +72,6 @@ class Binary_tree:
     else:
       deleting_node = self.search_return(value)
       deleting_node = deleting_node[1]
-      
     def childrens(node):
       number_of_childrens = 0
       if node.left_child != None:
@@ -111,6 +108,7 @@ class Binary_tree:
           left_side.parent.left_child = None
         if left_side.right_child != None:
           left_side.parent.left_child =  left_side.right_child
+  print("Node deleted") 
 def filling_tree(tree):
   import re 
   with open('binary.txt','r') as file:
@@ -118,12 +116,14 @@ def filling_tree(tree):
     valueList = re.sub("[^\w]", " ",  file_contents).split()
     for i in valueList:
       tree.inserting_node(int(i))  
-  return tree    
-tree = Binary_tree()
-tree = filling_tree(tree)
-tree.inserting_node(2)
+  return tree
+
+
+#tree = Binary_tree()
+#tree = filling_tree(tree)
+#print(tree.search_return(100)[0])
+#tree.delete_node(12)
 #tree.print_tree()
-#tree.delete_node(5)
 #tree.print_tree()
 
           
