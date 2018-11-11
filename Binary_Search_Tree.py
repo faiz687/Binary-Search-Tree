@@ -107,19 +107,20 @@ class Binary_tree:
           left_side.parent.left_child = None
         if left_side.right_child != None:
           left_side.parent.left_child =  left_side.right_child
+def filling_tree(tree):
+  import re 
+  with open('binary.txt','r') as file:
+    file_contents = file.readline()
+    valueList = re.sub("[^\w]", " ",  file_contents).split()
+    for i in valueList:
+      tree.inserting_node(int(i))
+  return tree    
 
-tree = Binary_tree()
-import re 
-with open('binary.txt','r') as file:
-  file_contents = file.readline()
-  valueList = re.sub("[^\w]", " ",  file_contents).split()
-  for i in valueList:
-    tree.inserting_node(int(i))
-tree.print_tree()
-"""tree.search_return(33)
-tree.delete_node(33)
-tree.print_tree
-tree.search_return(33)"""
+#tree = Binary_tree()
+#tree = filling_tree(tree)
+#tree.print_tree()
+#tree.delete_node(5)
+#tree.print_tree()
 
           
           
