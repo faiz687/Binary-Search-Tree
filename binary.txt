@@ -1,1 +1,1 @@
-5,0,2,1,23,12,7,9,45,33,34,35
+Wikipedia is written collaboratively by largely anonymous volunteers who write without pay. Anyone with Internet access can write and make changes to Wikipedia articles, except in limited cases where editing is restricted to prevent disruption or vandalism.

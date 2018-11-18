@@ -50,29 +50,7 @@ class Binary_tree_testing(unittest.TestCase):
     self.assertEqual(searchinhg_value,'No')
     
       
-    
-    
-
-      
-  
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+       
 if __name__ == '__main__':
   unittest.main()
   
