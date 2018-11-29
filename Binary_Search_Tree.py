@@ -37,7 +37,7 @@ class Binary_tree:
         return self.insert_node(present_node.right_child,value)
     else:
       
-       return print("Value in tree : {}".format(value))
+       return print("World Already in tree , frequecny increased : {}.".format(value))
   
   
   def print_tree(self):
@@ -45,7 +45,7 @@ class Binary_tree:
     if self.root == None:
       return 'Tree is Empty'
     else:
-      print("Printing Tree Elements :- ")
+      print("Printing Tree Elements In Pre-Order Format :- ")
       self.pre_order_traversal(self.root)
   
   
@@ -60,7 +60,7 @@ class Binary_tree:
     
   def search_return(self,value):
     if self.root != None:
-      print("traversed path :-")
+      print("Travesing Path To Node :-")
       print(self.root.value)
       return self.searching_element(value,self.root)
     else:
@@ -71,7 +71,7 @@ class Binary_tree:
     compares with left and right child and keeps moving downwards returns the node and accepts an word(str)"""
     
     if value == cur_node.value:
-      print("yes")
+      print("Word Present : YES")
       return cur_node
     elif value < cur_node.value and cur_node.left_child != None:
       print(cur_node.left_child.value)
@@ -79,18 +79,17 @@ class Binary_tree:
     elif value > cur_node.value and cur_node.right_child != None:
       print(cur_node.right_child.value)
       return self.searching_element(value , cur_node.right_child)
-    return ('No',cur_node)
+    else:
+      print("Word Present : NO ")
+      return cur_node
   
   def delete_node(self,value):
     """method to delete node accepts a word(str) calls search_return to return the node with that word,
     to delete , and deletes the node accordingly to the number of children it has"""
-    
-    
     if self.root == None:
       return print("Tree empty Insert first")
     else:
       deleting_node = self.search_return(value)
-      deleting_node = deleting_node[1]
     def childrens(node):
       number_of_childrens = 0
       if node.left_child != None:
@@ -120,14 +119,18 @@ class Binary_tree:
       
     if number_of_childrens == 2:
         left_side = deleting_node.right_child
-        while left_side.left_child != None:
-          left_side = left_side.left_child
-        deleting_node.value = left_side.value
-        if left_side.right_child == None:
-          left_side.parent.left_child = None
-        if left_side.right_child != None:
-          left_side.parent.left_child =  left_side.right_child
-    print("Node deleted") 
+        while left_side.left_child == None:
+          if left_side.right_child !=  None:
+            left_side = left_side.right_child
+          else:
+            break
+        if left_side.left_child != None:
+          deleting_node.value = left_side.left_child.value
+          left_side.left_child = None
+        else:
+          deleting_node.value = left_side.value
+          left_side.parent.right_child =  None
+    print("Node Deleted") 
 def filling_tree(tree):
   """ A function to fill the tree accepts the tree(object) imports reges module which helps 
   to helps to split , add in list and remove commas , punctuation or full stops , and insert 
@@ -137,16 +140,19 @@ def filling_tree(tree):
     file_contents = file.readline()
     valueList = re.sub("[^\w]", " ",  file_contents).split()
     for i in valueList:
-      tree.inserting_node(i)  
+      tree.inserting_node(int(i))  
   return tree
 
 
 tree = Binary_tree()
 tree = filling_tree(tree)
-#print(tree.search_return(100)[0])
-#tree.delete_node(12)
-#tree.print_tree()
-#tree.print_tree()
+tree.print_tree()
+tree.inserting_node(9)
+tree.search_return(20)
+tree.delete_node(8)
+tree.print_tree()
+
+
 
           
           
