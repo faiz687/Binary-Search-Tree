@@ -15,6 +15,7 @@ class Binary_tree:
     and inserts at it respetive position in tree"""
     if self.root == None: 
       self.root = node(value)
+      
     elif self.root != None:
       return self.insert_node(self.root,value)
     
@@ -36,8 +37,7 @@ class Binary_tree:
       else:
         return self.insert_node(present_node.right_child,value)
     else:
-      
-       return print("World Already in tree , frequecny increased : {}.".format(value))
+      return 'World Already in tree , frequecny increased :{}'.format(value)
   
   
   def print_tree(self):
@@ -64,7 +64,7 @@ class Binary_tree:
       print(self.root.value)
       return self.searching_element(value,self.root)
     else:
-      return print("No Elements In Tree")
+      return 'No Elements In Tree Insert First'
   
   def searching_element(self,value,cur_node):
     """method to search for the word in tree , with a base case if it founds , recursively 
@@ -81,15 +81,16 @@ class Binary_tree:
       return self.searching_element(value , cur_node.right_child)
     else:
       print("Word Present : NO ")
-      return cur_node
+      return 'No'
   
   def delete_node(self,value):
     """method to delete node accepts a word(str) calls search_return to return the node with that word,
     to delete , and deletes the node accordingly to the number of children it has"""
     if self.root == None:
-      return print("Tree empty Insert first")
+      return 'Tree empty Insert first'
     else:
       deleting_node = self.search_return(value)
+      
     def childrens(node):
       number_of_childrens = 0
       if node.left_child != None:
@@ -130,7 +131,7 @@ class Binary_tree:
         else:
           deleting_node.value = left_side.value
           left_side.parent.right_child =  None
-    print("Node Deleted") 
+    return 'Node Deleted' 
 def filling_tree(tree):
   """ A function to fill the tree accepts the tree(object) imports reges module which helps 
   to helps to split , add in list and remove commas , punctuation or full stops , and insert 
@@ -140,16 +141,16 @@ def filling_tree(tree):
     file_contents = file.readline()
     valueList = re.sub("[^\w]", " ",  file_contents).split()
     for i in valueList:
-      tree.inserting_node(int(i))  
+      tree.inserting_node(i)  
   return tree
 
 
 tree = Binary_tree()
 tree = filling_tree(tree)
+print(tree.inserting_node("of"))
+tree.search_return("file")
 tree.print_tree()
-tree.inserting_node(9)
-tree.search_return(20)
-tree.delete_node(8)
+print(tree.delete_node("Reason"))
 tree.print_tree()
 
 
